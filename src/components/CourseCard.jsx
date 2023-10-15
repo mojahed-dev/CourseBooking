@@ -7,8 +7,6 @@ function CourseCard({courseProp}) {
   console.log(name, description);
   return (
     <>
-      
-   
         <div className="">
           <div className="card ">
             <div className="flex flex-col sm:flex-row ">
@@ -19,7 +17,7 @@ function CourseCard({courseProp}) {
                   className="w-full rounded-lg"
                 />
               </div>
-              <div class="md:w-2/3 sm:w-1/2 p-5">
+              <div className="md:w-2/3 sm:w-1/2 p-5">
                 <h3 className="text-base font-medium tracking-tight text-slate-900 dark:text-white">
                   {name}
                 </h3>
@@ -36,7 +34,6 @@ function CourseCard({courseProp}) {
             </div>
           </div>
         </div>
-      
     </>
   );
 }

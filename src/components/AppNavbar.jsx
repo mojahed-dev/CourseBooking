@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Dialog } from '@headlessui/react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { Bars3Icon, XMarkIcon, UserCircleIcon } from '@heroicons/react/24/outline';
 // import { UserCircleIcon } from '@heroicons/react/outline';
 
@@ -15,7 +15,9 @@ const navigation = [
 
 
 export default function AppNavbar() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [user, setUser] = useState(localStorage.getItem("token"));
+  console.log("token: ", user);
 
 
 
@@ -59,13 +61,23 @@ export default function AppNavbar() {
 
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end gap-3">
-            <a href="#" className="text-sm font-semibold leading-6 text-gray-900 flex items-center">
-              <UserCircleIcon className="w-4 h-4 mr-1" /> Register <span aria-hidden="true"></span>
-            </a>
-            <span> | </span>
-            <Link to="/login" className="text-sm font-semibold leading-6 text-gray-900">
-              Log in <span aria-hidden="true">&rarr;</span>
-            </Link>
+            {(user !== null) ?
+               <Link as={NavLink} to="/logout" className="text-sm font-semibold leading-6 text-gray-900">
+               Log out <span aria-hidden="true">&rarr;</span>
+             </Link>
+             : 
+              <>
+                <Link to="/" className="text-sm font-semibold leading-6 text-gray-900 flex items-center">
+                  <UserCircleIcon className="w-4 h-4 mr-1" /> Register <span aria-hidden="true"></span>
+                </Link>
+                <span> | </span>
+                <Link as={NavLink}  to="/login" className="text-sm font-semibold leading-6 text-gray-900">
+                  Log in <span aria-hidden="true">&rarr;</span>
+                </Link>
+              </>
+
+            }
+           
           </div>
         </nav>
         <nav>
@@ -106,15 +118,29 @@ export default function AppNavbar() {
 
                 </div>
                 <div className="py-6">
-                <a href="#" className="text-sm font-semibold leading-6 text-gray-900 flex items-center">
-                 Register <span aria-hidden="true"></span>
-                </a>
-                  <a
-                    href="#"
+                  {(user !== null) ?
+                    <Link as={NavLink}
+                    to="/logout"
                     className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                   >
-                    Log in
-                  </a>
+                    Log out
+                  </Link>
+                    :
+                   <>
+                     <a href="#" className="text-sm font-semibold leading-6 text-gray-900 flex items-center">
+                    Register <span aria-hidden="true"></span>
+                    </a>
+                      <Link
+                        as={NavLink}
+                        to="/login"
+                        className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                      >
+                        Log in
+                      </Link>
+                   </>
+
+                  }
+                
                 </div>
               </div>
             </div>

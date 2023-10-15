@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import Banner from './components/Banner';
 import Courses from './pages/Courses';
 import Login from './pages/Login';
+import Logout from './pages/Logout';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path="courses" element={<Courses />} />
           <Route path="login" element={<Login />} />
+          <Route path="logout" element={<Logout />} />
           {/* <Route path="*" element={<NoPage />} /> */}
       </Routes>
     </BrowserRouter>
